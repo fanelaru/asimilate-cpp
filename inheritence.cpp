@@ -62,5 +62,7 @@ int main()
     Manager manag1("Boss de boss", 5000.50, true);
 
     std::cout << manag1.toString() << std::endl;
+
+    std::cout << "Asta e de test" << std::endl;
     return 0;
 }
