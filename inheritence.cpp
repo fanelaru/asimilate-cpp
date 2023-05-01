@@ -1,5 +1,7 @@
 #include <iostream>
 #include <sstream>
+#include <vector>
+#include <exception>
 
 class Employee {
 private:
@@ -100,6 +102,14 @@ public:
         }
 };
 
+class newExcptn : public std::exception
+{
+	virtual const char* what() const throw()
+	{
+		return "newExcptn occurred";
+	}
+} newexc;
+
 int main()
 {
     Employee emp1("Fane Babanu", 2300.12);
@@ -119,6 +129,29 @@ int main()
     myacct.debit(50);
     std::cout << myacct.getBalance() << std::endl;
     myacct.credit(150);
-    
+
+    try 
+    {
+		throw newexc;
+    }
+	catch (std::exception& exc)
+    {
+		std::cout << exc.what() << std::endl;
+	}
+
+    // try catch
+    std::vector<int> vect;
+	vect.push_back(0);	
+	vect.push_back(1);	
+	// accessing third element, which is non-existence
+	try
+	{
+		vect.at(2);		
+	}
+	catch (std::exception& exc)
+	{
+		std::cout << "Exception has occurred! " << exc.what() << std::endl;
+	}
+
     return 0;
 }
