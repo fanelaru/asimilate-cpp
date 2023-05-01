@@ -110,6 +110,36 @@ class newExcptn : public std::exception
 	}
 } newexc;
 
+class Quadrilateral {
+protected:
+    double side1, side2, side3, side4;
+public:
+    Quadrilateral(double s1, double s2, double s3, double s4) {
+        side1 = s1;
+        side2 = s2;
+        side3 = s3;
+        side4 = s4;
+    }
+
+    void display() {
+        std::cout << "Quadrilateral with sides: " <<
+                      side1 << " " << side2 << " " <<
+                      side3 << " " << side4 << std::endl;
+    }
+};
+
+class Trapezoid : public Quadrilateral {
+public:
+    Trapezoid(double s1, double s2, double s3, double s4) : 
+    Quadrilateral(s1, s2, s3, s4) {};
+};
+
+class Square : public Quadrilateral {
+public:
+    Square(double side) : 
+    Quadrilateral(side, side, side, side) {};
+};
+
 int main()
 {
     Employee emp1("Fane Babanu", 2300.12);
@@ -130,6 +160,9 @@ int main()
     std::cout << myacct.getBalance() << std::endl;
     myacct.credit(150);
 
+    Trapezoid t1(2, 3, 4, 5);
+    Square s1(10);
+    
     try 
     {
 		throw newexc;
