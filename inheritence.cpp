@@ -136,7 +136,7 @@ public:
         side4 = s4;
     }
 
-    void display() {
+    virtual void display() const {
         std::cout << "Quadrilateral with sides: " <<
                       side1 << " " << side2 << " " <<
                       side3 << " " << side4 << std::endl;
@@ -147,12 +147,21 @@ class Trapezoid : public Quadrilateral {
 public:
     Trapezoid(double s1, double s2, double s3, double s4) : 
     Quadrilateral(s1, s2, s3, s4) {};
+    void display() const override {
+        std::cout << "Trapezoid with sides: " <<
+            side1 << " " << side2 << " " <<
+            side3 << " " << side4 << std::endl;
+    }
 };
 
 class Square : public Quadrilateral {
 public:
     Square(double side) : 
     Quadrilateral(side, side, side, side) {};
+    void display() const override {
+        std::cout << "Square with sides: " <<
+            side1 << std::endl;
+    }
 };
 
 int main()
@@ -177,6 +186,12 @@ int main()
 
     Trapezoid t1(2, 3, 4, 5);
     Square s1(10);
+    std::vector <Quadrilateral *> quads;
+    quads.push_back(&t1);
+    quads.push_back(&s1);
+
+    for (int i = 0; i < quads.size(); ++i)
+        quads[i]->display(); 
     
     try 
     {
